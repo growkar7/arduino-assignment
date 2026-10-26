@@ -1,22 +1,65 @@
 #include <Arduino.h>
 
-const int LED_PIN = LED_BUILTIN;
+void calculateSum();
+void calculateMultiplication();
 
-void blink(int times, int delayMs) {
-  for (int i = 0; i < times; i++) {
-    digitalWrite(LED_PIN, HIGH);
-    delay(delayMs);
-    digitalWrite(LED_PIN, LOW);
-    delay(delayMs);
+
+void showMenu() {
+  Serial.println();
+  Serial.println("===== MENU =====");
+  Serial.println("1 = Calculate Sum");
+  Serial.println("2 = Multiplication");
+  Serial.print("Choose an option: ");
+}
+
+
+char readChoice() {
+  while (true) {
+    while (Serial.available() == 0) {
+      // wait for input
+    }
+    char c = Serial.read();
+    if (c != '\n' && c != '\r' && c != ' ') {
+      return c;
+    }
+  }
+}
+
+
+void handleChoice(char choice) {
+  Serial.println(choice);
+
+  switch (choice) {
+    case '1':
+      calculateSum();
+      break;
+    case '2':
+      calculateMultiplication();
+      break;
+    default:
+      Serial.println("Invalid choice, please type 1 or 2.");
+      break;
   }
 }
 
 void setup() {
-  pinMode(LED_PIN, OUTPUT);
   Serial.begin(9600);
+  while (!Serial) {
+   
+  }
 }
 
 void loop() {
-  blink(3, 500);
-  delay(2000);
+  showMenu();
+  char choice = readChoice();
+  handleChoice(choice);
+}
+
+
+void calculateSum() {
+  Serial.println("[Sum not implemented yet - member 3]");
+}
+
+void calculateMultiplication() {
+  Serial.println("[Multiplication not implemented yet - member 4]");
 }
