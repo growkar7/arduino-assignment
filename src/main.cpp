@@ -1,4 +1,6 @@
-const int LED_PIN = LED_BUILTIN;  // built-in LED, usually pin 13
+#include <Arduino.h>
+
+const int LED_PIN = LED_BUILTIN;
 
 void blink(int times, int delayMs) {
   for (int i = 0; i < times; i++) {
@@ -15,6 +17,6 @@ void setup() {
 }
 
 void loop() {
-  blink(3, 500);  // test call, the menu will replace this later
+  blink(3, 500);
   delay(2000);
 }
